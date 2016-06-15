@@ -11,7 +11,6 @@ var internetTest = function() {
     speedTest.visual({maxTime: 5000}, function(err, data) {
 
         if(data){
-            console.log("Hay internet")
             db.insert({
 
                 date : new Date(),
@@ -23,7 +22,6 @@ var internetTest = function() {
             });
         }
         else{
-            console.log("No hay internet")
             db.insert({
 
                 date : new Date(),
@@ -58,6 +56,8 @@ app.get('/', function(req, res){
 });
 
 app.set('view engine', 'pug');
+app.use(express.static('node_modules/bootstrap/dist/'));
+app.use(express.static('node_modules/jquery/dist/'));
 app.listen(config.port, function () {
     console.log('Internet Status Checker running on port ' + config.port + '!');
 });
