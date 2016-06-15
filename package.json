@@ -1,6 +1,6 @@
 {
   "name": "internet-status-check",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SantiMA10/Internet-Status-Checker#readme",
   "dependencies": {
+    "angular": "^1.5.6",
     "bootstrap": "^3.3.6",
     "cron": "^1.1.0",
     "express": "^4.13.4",

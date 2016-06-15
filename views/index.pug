@@ -1,7 +1,7 @@
 doctype html
-html(lang='es')
+html(lang='es', ng-app='isc')
     head
-        title(state-title) Internet status check
+        title(state-title) Internet Status Check
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width, initial-scale=1')
         meta(http-equiv='x-ua-compatible', content='ie=edge')
@@ -12,21 +12,51 @@ html(lang='es')
             .container-fluid
                 .navbar-brand Internet Status Check
 
-        .container
+        .container(ng-controller = "homeController as home")
+            p {{homeController.averages}}
+            h2 Averages
+            .row
+                .col-md-8
+                    table.table.table-striped
+                        thead
+                            tr
+                                th Download (Mbps)
+                                th Upload (Mbps)
+                                th Ping (ms)
+                        tbody
+                            tr
+                                th {{home.averages.download  | number : 2}}
+                                th {{home.averages.upload  | number : 2}}
+                                th {{home.averages.ping  | number : 2}}
+                .col-md-4
+                    table.table.table-striped
+                        thead
+                            tr
+                                th Up percentaje
+                        tbody
+                            tr
+                                th(style="text-align: center;") {{ (home.averages.up/home.averages.total) * 100 | number : 2}} %
+
+            h2 Results
             table.table.table-striped
                 thead
                     tr
                         th Date
-                        th Download Speed
-                        th Upload Speed
+                        th Download Speed (Mbps)
+                        th Upload Speed (Mbps)
                         th Server
+                        th Ping (ms)
                 tbody
-                    each row in data
-                        tr
-                            th= row.date
-                            th= row.download
-                            th= row.upload
-                            th= row.host
+                    tr(ng-repeat = "row in home.latest")
+                        th {{row.date | date : 'short'}}
+                        th(ng-show="row.status") {{row.download | number : 2}}
+                        th(ng-show="row.status") {{row.upload | number : 2}}
+                        th(ng-show="row.status") {{row.host}}
+                        th(ng-show="row.status") {{row.ping | number : 2}}
+                        th(ng-hide="row.status" colspan="4" style="text-align: center;") No internet conection
 
         script(src="/jquery.min.js")
         script(src="/js/bootstrap.min.js")
+        script(src="/angular.min.js")
+        script(src="/app.js")
+
