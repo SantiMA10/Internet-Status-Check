@@ -1,0 +1,32 @@
+doctype html
+html(lang='es')
+    head
+        title(state-title) Internet status checker
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(http-equiv='x-ua-compatible', content='ie=edge')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+
+    body
+        .navbar.navbar-default
+            .container-fluid
+                .navbar-brand Internet Status Checker
+
+        .container
+            table.table.table-striped
+                thead
+                    tr
+                        th Date
+                        th Download Speed
+                        th Upload Speed
+                        th Server
+                tbody
+                    each row in data
+                        tr
+                            th= row.date
+                            th= row.download
+                            th= row.upload
+                            th= row.host
+
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js")
