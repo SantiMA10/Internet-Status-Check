@@ -1,5 +1,13 @@
 # Internet-Status-Checker
 
+[![Release](http://github-release-version.herokuapp.com/github/SantiMA10/Internet-Status-Check/release.png)](https://github.com/SantiMA10/Internet-Status-Check/releases)
+[![GitHub issues](https://img.shields.io/github/issues/SantiMA10/Internet-Status-Check.svg)](https://github.com/SantiMA10/Internet-Status-Check/issues)
+[![GitHub forks](https://img.shields.io/github/forks/SantiMA10/Internet-Status-Check.svg)](https://github.com/SantiMA10/Internet-Status-Check/network)
+[![GitHub stars](https://img.shields.io/github/stars/SantiMA10/Internet-Status-Check.svg)](https://github.com/SantiMA10/Internet-Status-Check/stargazers)
+
+![web](https://cloud.githubusercontent.com/assets/7255298/16101514/cb80c6a2-3366-11e6-8f43-574d7c9a6f76.png)
+
+
 ### How it works
 
 When you start the app, it program a crontab for launch a Internet Speed Test and store the result on a [embeded db based on MongoDB](https://github.com/louischatriot/nedb).
