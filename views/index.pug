@@ -1,5 +1,5 @@
 doctype html
-html(lang='es', ng-app='isc')
+html(lang='en', ng-app='isc')
     head
         title(state-title) Internet Status Check
         meta(charset='utf-8')
@@ -11,6 +11,11 @@ html(lang='es', ng-app='isc')
         .navbar.navbar-default
             .container-fluid
                 .navbar-brand Internet Status Check
+                ul.nav.navbar-nav
+                    li.active
+                        a(href="/") Home
+                    li
+                        a(href="/config") Configuration
 
         .container(ng-controller = "homeController as home")
             p {{homeController.averages}}
@@ -55,8 +60,15 @@ html(lang='es', ng-app='isc')
                         th(ng-show="row.status") {{row.ping | number : 2}}
                         th(ng-hide="row.status" colspan="4" style="text-align: center;") No internet conection
 
+        footer(style="text-align: center;")
+            .contaniner
+                p Made with ❤️ by
+                    a(href="https://SantiMA.xyz")  Santiago M.A.
+
         script(src="/jquery.min.js")
         script(src="/js/bootstrap.min.js")
         script(src="/angular.min.js")
         script(src="/app.js")
+
+
 

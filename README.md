@@ -5,8 +5,11 @@
 [![GitHub forks](https://img.shields.io/github/forks/SantiMA10/Internet-Status-Check.svg)](https://github.com/SantiMA10/Internet-Status-Check/network)
 [![GitHub stars](https://img.shields.io/github/stars/SantiMA10/Internet-Status-Check.svg)](https://github.com/SantiMA10/Internet-Status-Check/stargazers)
 
-![web](https://cloud.githubusercontent.com/assets/7255298/16101514/cb80c6a2-3366-11e6-8f43-574d7c9a6f76.png)
+![web view](https://cloud.githubusercontent.com/assets/7255298/16101514/cb80c6a2-3366-11e6-8f43-574d7c9a6f76.png)
 
+### Motivation
+
+I made this for working in background in my Raspberry Pi to check the status of my internet connection automatically.
 
 ### How it works
 
@@ -16,9 +19,9 @@ Also starts a web server with ExpressJS who loads the data from the db and shows
 
 ### How Install and use
 
-**You need [Node.js](https://nodejs.org/en/) for running this.**
+**You need Node.js ([for Windows, Mac or Linux](https://nodejs.org/en/), for [Raspberry Pi](http://weworkweplay.com/play/raspberry-pi-nodejs/) for running this.**
 
-Download the [last release](https://github.com/SantiMA10/Internet-Status-Check/releases), unzip it, download all the dependencies with **npm install** and lunch it with **node app.js**.
+Download the [last release](https://github.com/SantiMA10/Internet-Status-Check/releases), unzip it, download all the dependencies with **npm install** and lunch it in foreground with **node app.js** or lunch it in background with **node app.js &**.
 
 ### Configuration
 

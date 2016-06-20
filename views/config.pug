@@ -1,0 +1,64 @@
+doctype html
+html(lang='en', ng-app='isc')
+    head
+        title(state-title) Internet Status Check | Configuration
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(http-equiv='x-ua-compatible', content='ie=edge')
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+
+    body
+        .navbar.navbar-default
+            .container-fluid
+                .navbar-brand Internet Status Check
+                ul.nav.navbar-nav
+                    li
+                        a(href="/") Home
+                    li.active
+                        a(href="/config") Configuration
+
+        .container(ng-controller = "configurationController as config")
+            form(ng-submit="config.save()")
+                table.table.table-striped
+                    thead
+                        tr
+                            th Second
+                            th Minute
+                            th Hour
+                            th Day
+                            th Month
+                            th Year
+                    tbody
+                        tr
+                            th
+                                input(ng-model="config.crontab.second")
+                            th
+                                input(ng-model="config.crontab.minute")
+                            th
+                                input(ng-model="config.crontab.hour")
+                            th
+                                input(ng-model="config.crontab.day")
+                            th
+                                input(ng-model="config.crontab.month")
+                            th
+                                input(ng-model="config.crontab.year")
+
+                input.btn.btn-primary(type="submit" value="save")
+
+        .container
+            br
+            a(href="http://alvinalexander.com/linux/unix-linux-crontab-every-minute-hour-day-syntax") Crontab Examples
+
+
+        footer(style="text-align: center;")
+            .contaniner
+                p Made with ❤️ by
+                    a(href="https://SantiMA.xyz")  Santiago M.A.
+
+        script(src="/jquery.min.js")
+        script(src="/js/bootstrap.min.js")
+        script(src="/angular.min.js")
+        script(src="/app.js")
+
+
+
