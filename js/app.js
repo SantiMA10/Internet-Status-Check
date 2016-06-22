@@ -45,23 +45,30 @@
     function configurationController( $http ) {
         
         var configurationController = this;
+        configurationController.success = false;
+        configurationController.danger = false;
 
+        var loadConfiguration = function(){
 
-        $http.get('/crontab')
-            .then(function(resp){
+            $http.get('/crontab')
+                .then(function(resp){
 
-                var crontab = resp.data.configuration.split(" ");
+                    var crontab = resp.data.configuration.split(" ");
 
-                configurationController.crontab = {
-                    second : crontab[0],
-                    minute : crontab[1],
-                    hour   : crontab[2],
-                    day    : crontab[3],
-                    month  : crontab[4],
-                    year   : crontab[5]
-                };
+                    configurationController.crontab = {
+                        second : crontab[0],
+                        minute : crontab[1],
+                        hour   : crontab[2],
+                        day    : crontab[3],
+                        month  : crontab[4],
+                        year   : crontab[5]
+                    };
 
-            });
+                });
+
+        };
+
+        loadConfiguration();
         
         configurationController.save = function(){
 
@@ -81,9 +88,16 @@
             };
 
             $http(post).then(function () {
-               console.log("Sucess");
-            }, function (err) {
-                console.log(err);
+                configurationController.danger = false;
+                configurationController.success = true;
+                configurationController.successMsg = "Changes saved!";
+
+            }, function () {
+                configurationController.success = false;
+                configurationController.danger = true;
+                configurationController.dangerMsg = "Invalid crontab expresion";
+                loadConfiguration();
+
             });
 
         }

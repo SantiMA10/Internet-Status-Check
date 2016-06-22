@@ -1,4 +1,4 @@
-# Internet-Status-Checker
+# Internet-Status-Check
 
 [![Release](http://github-release-version.herokuapp.com/github/SantiMA10/Internet-Status-Check/release.png)](https://github.com/SantiMA10/Internet-Status-Check/releases)
 [![GitHub issues](https://img.shields.io/github/issues/SantiMA10/Internet-Status-Check.svg)](https://github.com/SantiMA10/Internet-Status-Check/issues)
@@ -19,20 +19,39 @@ Also starts a web server with ExpressJS who loads the data from the db and shows
 
 ### How Install and use
 
-**You need Node.js ([for Windows, Mac or Linux](https://nodejs.org/en/), for [Raspberry Pi](http://weworkweplay.com/play/raspberry-pi-nodejs/) for running this.**
+**You need Node.js ([for Windows, Mac or Linux](https://nodejs.org/en/), for [Raspberry Pi](http://weworkweplay.com/play/raspberry-pi-nodejs/)) for running this.**
 
 Download the [last release](https://github.com/SantiMA10/Internet-Status-Check/releases), unzip it, download all the dependencies with **npm install** and lunch it in foreground with **node app.js** or lunch it in background with **node app.js &**.
 
+##### Start on startup on the Raspberry Pi
+
+In your Raspberry Pi, edit the **rc.local** with **sudo nano /etc/rc.local** or your favourite editor:
+```
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
+node /home/pi/Internet-Status-Check/app.js > /dev/null & //Add this line with the correct route to the app
+
+exit 0
+```
+
 ### Configuration
 
-Edit the file **config.json**
+Edit the file **config.json**...
 
 ```
 {
-  "crontab" : "* * */6 * * *", // A crontab pattern 
+  "crontab" : "0 0 */3 * * *", // A crontab pattern, for example: this execute the test every 3 hours
   "port" : 8080               // Port for the web page
 }
 ```
+
+...or visit the **configuration page**:
+![configuration](https://cloud.githubusercontent.com/assets/7255298/16264808/e1a89dc8-387b-11e6-8bae-677958ea4672.png)
+
 [Crontab parttern examples](http://alvinalexander.com/linux/unix-linux-crontab-every-minute-hour-day-syntax)
 
 ### Issues and contributing

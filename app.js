@@ -84,14 +84,27 @@ app.get('/crontab', function(req, res){
 
 app.post('/crontab', function(req, res){
 
-    config.crontab = req.body.configuration;
-
     job.stop();
-    job = new CronJob(config.crontab, function() {
-        internetTest();
-    });
-    job.start();
 
+    try{
+        job = new CronJob(req.body.configuration, function() {
+            internetTest();
+        });
+
+    } catch (ex) {
+
+        job = new CronJob(config.crontab, function() {
+            internetTest();
+        });
+        console.log("Crontab expresion error");
+        res.status(500);
+        res.end();
+        return;
+
+    }
+
+    job.start();
+    config.crontab = req.body.configuration;
     fs.writeFileSync(__dirname +'/config.json', JSON.stringify(config));
 
     res.end();

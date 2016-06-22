@@ -18,6 +18,8 @@ html(lang='en', ng-app='isc')
                         a(href="/config") Configuration
 
         .container(ng-controller = "configurationController as config")
+            .alert.alert-success(ng-show="config.success") {{config.successMsg}}
+            .alert.alert-danger(ng-show="config.danger") {{config.dangerMsg}}
             form(ng-submit="config.save()")
                 table.table.table-striped
                     thead
