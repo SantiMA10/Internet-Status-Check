@@ -1,10 +1,10 @@
 var speedTest = require('speedtest-net'),
     CronJob = require('cron').CronJob,
     Datastore = require('nedb'),
-    db = new Datastore({ filename: 'data/db.db', autoload: true }),
+    db = new Datastore({ filename: __dirname+'/data/db.db', autoload: true }),
     express = require('express'),
     app = express(),
-    config = require("./config.json"),
+    config = require(__dirname+"/config.json"),
     fs = require('fs'),
     bodyParser = require('body-parser');
 
@@ -14,10 +14,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('view engine', 'pug');
 
-app.use(express.static('node_modules/bootstrap/dist/'));
-app.use(express.static('node_modules/jquery/dist/'));
-app.use(express.static('node_modules/angular/'));
-app.use(express.static('js/'));
+app.use(express.static(__dirname+'/node_modules/bootstrap/dist/'));
+app.use(express.static(__dirname+'/node_modules/jquery/dist/'));
+app.use(express.static(__dirname+'/node_modules/angular/'));
+app.use(express.static(__dirname+'/js/'));
 
 var internetTest = function() {
     speedTest.visual({maxTime: 5000}, function(err, data) {
@@ -53,18 +53,18 @@ try{
     });
     job.start();
 } catch (ex) {
-    console.log("Crontab expresion error")
+    console.log("Crontab expresion error");
 }
 
 app.get('/', function(req, res){
 
-    res.render("index");
+    res.render(__dirname+"/views/index");
 
 });
 
 app.get('/config', function(req, res){
 
-    res.render("config");
+    res.render(__dirname+"/views/config");
 
 });
 
@@ -92,7 +92,7 @@ app.post('/crontab', function(req, res){
     });
     job.start();
 
-    fs.writeFileSync('./config.json', JSON.stringify(config));
+    fs.writeFileSync(__dirname +'/config.json', JSON.stringify(config));
 
     res.end();
 
